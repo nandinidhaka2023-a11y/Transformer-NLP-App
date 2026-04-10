@@ -5,10 +5,10 @@ Text Summarization
 Sentiment Analysis
 Security Detection
 
-Description
+Description:
 This application uses transformer-based models to generate summaries, analyze sentiment, and detect security vulnerabilities in code.
 
-Technologies Used
+Technologies Used:
 Python
 Streamlit
 Hugging Face Transformers
