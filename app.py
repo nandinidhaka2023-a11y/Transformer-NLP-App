@@ -5,16 +5,18 @@ from transformers import pipeline
 st.set_page_config(page_title="Secure NLP App", layout="centered")
 
 st.title("🧠 Transformer NLP App")
-st.write("Performs summarization, sentiment analysis, and security detection.")
+st.write("Performs summarization and security detection.")
 
 # Load lightweight models
 @st.cache_resource
 def load_models():
-    summarizer = pipeline("summarization", model="sshleifer/distilbart-cnn-6-6")
-    sentiment = pipeline("sentiment-analysis")
-    return summarizer, sentiment
+    summarizer = pipeline(
+        "summarization",
+        model="sshleifer/distilbart-cnn-6-6"
+    )
+    return summarizer
 
-summarizer, sentiment_analyzer = load_models()
+summarizer = load_models()
 
 # ---------------- INPUT ----------------
 text = st.text_area("✍️ Enter text or code:", height=200)
@@ -30,26 +32,15 @@ if st.button("✨ Summarize"):
                     min_length=10,
                     do_sample=False
                 )
-                summary = result[0]['summary_text']
+
+                summary = result[0]["summary_text"]
+
                 st.subheader("📌 Summary:")
                 st.success(summary)
-            except:
+
+            except Exception as e:
                 st.error("Error generating summary")
-    else:
-        st.warning("Please enter text!")
 
-# ---------------- SENTIMENT ----------------
-if st.button("😊 Sentiment Analysis"):
-    if text.strip():
-        result = sentiment_analyzer(text)
-        label = result[0]['label']
-        score = result[0]['score']
-
-        st.subheader("💬 Sentiment:")
-        if label == "POSITIVE":
-            st.success(f"Positive 😊 (Confidence: {score:.2f})")
-        else:
-            st.error(f"Negative 😞 (Confidence: {score:.2f})")
     else:
         st.warning("Please enter text!")
 
@@ -66,15 +57,18 @@ def check_vulnerability(code):
     else:
         return "✅ No major vulnerabilities detected"
 
+
 if st.button("🔐 Check Security"):
     if text.strip():
         result = check_vulnerability(text)
 
         st.subheader("🔍 Security Analysis:")
+
         if "⚠️" in result:
             st.error(result)
         else:
             st.success(result)
+
     else:
         st.warning("Please enter text!")
 
