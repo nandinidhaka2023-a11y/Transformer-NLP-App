@@ -1,5 +1,9 @@
 # SQL Insight
 
+## 🚀 Live Demo
+
+[![Live Demo](https://img.shields.io/badge/🚀%20Live%20Demo-Streamlit-red?style=for-the-badge)](https://transformer-nlp-app-dqj7zkajjrsweex6auy4pn.streamlit.app/)
+
 Parser-based **SQL summarizer** and **static security analyzer** in a single Streamlit app.
 
 Paste one SQL query or a Python snippet that builds SQL, then click **Analyze**. The app returns:
