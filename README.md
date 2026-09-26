@@ -1,7 +1,7 @@
 Transformer NLP App
 This project performs:
 
-Text Summarization
+Text Summarization and 
 Security Detection
 
 Description:
