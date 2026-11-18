@@ -4,6 +4,7 @@
 
 [![Live Demo](https://img.shields.io/badge/🚀%20Live%20Demo-Streamlit-red?style=for-the-badge)](https://transformer-nlp-app-dqj7zkajjrsweex6auy4pn.streamlit.app/)
 
+Prototype link : https://drive.google.com/drive/folders/1VHkDIba9P8oKhQpYVJr3CQaeQ2h7mHX_?usp=sharing
 Parser-based **SQL summarizer** and **static security analyzer** in a single Streamlit app.
 
 Paste one SQL query or a Python snippet that builds SQL, then click **Analyze**. The app returns:
