@@ -5,24 +5,26 @@
 [![Live Demo](https://img.shields.io/badge/🚀%20Live%20Demo-Streamlit-red?style=for-the-badge)](https://transformer-nlp-app-dqj7zkajjrsweex6auy4pn.streamlit.app/)
 
 Prototype link with screenshots of the project : https://drive.google.com/drive/folders/1VHkDIba9P8oKhQpYVJr3CQaeQ2h7mHX_?usp=sharing
-Parser-based **SQL summarizer** and **static security analyzer** in a single Streamlit app.
+
+Hybrid SQL summarizer** and **static security analyzer (SQLGlot parsing + FLAN-T5 explanations) in a single Streamlit app.
 
 Paste one SQL query or a Python snippet that builds SQL, then click **Analyze**. The app returns:
 
-1. A plain-language **SQL summary** (what the statement does)
-2. A **security analysis** (risk level, issue, explanation, recommended fix)
+1. **SQL summary**: the query is parsed with SQLGlot and summarized in plain language
+2. **Transformer NLP explanation**: a Hugging Face FLAN-T5 model generates an easy-to-read explanation of the query
+3. **Security analysis**: a risk level, detected vulnerability, explanation and recommended fix, using AST-based static checks for SQL Injection, Command Injection, Path Traversal, `eval`/`exec` misuse and hardcoded credentials
 
-Generic transformer summarization and sentiment analysis are not used. SQL is parsed with [sqlglot](https://github.com/tobymao/sqlglot). Security checks walk Python ASTs so whitespace and line breaks do not change the classification.
+SQL is parsed with [sqlglot](https://github.com/tobymao/sqlglot), and a Hugging Face FLAN-T5 Transformer model turns the parsed structure into a plain-language explanation. Security checks walk Python ASTs, so whitespace and line breaks do not change the classification.
 
 ## Features
 
 - Human-readable summaries for common SQL operations
+- Transformer NLP explanations generated with Hugging Face FLAN-T5
 - SQL injection detection for concatenation, f-strings, and `str.format`
 - Recognition of parameterized `cursor.execute(sql, params)` as safe (for this rule set)
 - Extra static checks: command injection, path traversal, `eval`/`exec`, hardcoded secrets
-- One input, one button, two result cards
+- One input, one button, three result cards: SQL summary, Transformer NLP explanation, Security analysis
 - Example queries built into the UI
-
 ## SQL analysis examples
 
 **Input**
